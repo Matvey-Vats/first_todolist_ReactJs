@@ -1,0 +1,65 @@
+.todoItem {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.text {
+	font-size: 20px;
+	margin-right: 5px;
+}
+
+.buttons {
+	display: flex;
+	flex-direction: row;
+	column-gap: 10px;
+}
+
+.completeBtn {
+	position: relative;
+	color: #00ff80;
+}
+
+.completeBtn:hover::after {
+	position: absolute;
+	content: '';
+	bottom: -2px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 50%;
+	background-color: #00ff80;
+	height: 1px;
+	animation: hoverEffect 0.2s ease-in-out;
+}
+
+.deleteBtn {
+	position: relative;
+	color: #ff006a;
+}
+
+.deleteBtn:hover::after {
+	position: absolute;
+	content: '';
+	bottom: -2px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 50%;
+	background-color: #ff006a;
+	height: 1px;
+	animation: hoverEffect 0.2s ease-in-out;
+}
+
+.completed {
+	text-decoration: line-through;
+	color: #ff006a;
+}
+
+@keyframes hoverEffect {
+	0% {
+		width: 0;
+	}
+	100% {
+		width: 50%;
+	}
+}
