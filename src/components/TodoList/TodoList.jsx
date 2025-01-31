@@ -5,9 +5,16 @@ import TodoItem from '../TodoItem/TodoItem'
 import styles from './TodoList.module.css'
 
 export default function TodoList() {
+	const [filter, setFilter] = useState('all')
 	const [tasks, setTasks] = useState(() => {
 		const savedTasks = localStorage.getItem('tasks')
 		return savedTasks ? JSON.parse(savedTasks) : []
+	})
+
+	const filteredTasks = tasks.filter(task => {
+		if (filter === 'active') return !task.completed
+		if (filter === 'completed') return task.completed
+		return true
 	})
 
 	useEffect(() => {
@@ -33,9 +40,9 @@ export default function TodoList() {
 	return (
 		<div className={styles.todoList}>
 			<h1 className={styles.title}>Todo List</h1>
-			<TodoForm addTask={addTask} />
-			{tasks.length ? (
-				tasks.map(task => (
+			<TodoForm addTask={addTask} filter={filter} setFilter={setFilter} />
+			{filteredTasks.length ? (
+				filteredTasks.map(task => (
 					<TodoItem
 						key={task.id}
 						task={task}

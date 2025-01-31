@@ -1,0 +1,17 @@
+.filterBtn {
+	border: 1px solid #cccc;
+	padding: 5px 10px;
+	border-radius: 8px;
+	font-family: 'Montserrat', sans-serif;
+	transition: background-color 0.2s ease-in;
+}
+
+.filterBtn:hover {
+	color: #242424;
+	background-color: #cccc;
+}
+
+.filterBtn.active {
+	color: #242424;
+	background-color: #cccc;
+}
