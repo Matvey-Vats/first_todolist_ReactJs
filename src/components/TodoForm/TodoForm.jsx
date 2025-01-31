@@ -2,7 +2,7 @@ import { useState } from 'react'
 import FilterButton from '../FilterButton/FilterButton'
 import styles from './TodoForm.module.css'
 
-export default function TodoForm({ addTask, filter, setFilter }) {
+export default function TodoForm({ tasks, addTask, filter, setFilter }) {
 	const [text, setText] = useState('')
 	const [isError, setIsError] = useState(false)
 
@@ -39,26 +39,28 @@ export default function TodoForm({ addTask, filter, setFilter }) {
 					Add
 				</button>
 			</form>
-			<div className={styles.filters}>
-				<FilterButton
-					isActive={filter === 'all'}
-					onClick={() => setFilter('all')}
-				>
-					All
-				</FilterButton>
-				<FilterButton
-					isActive={filter === 'active'}
-					onClick={() => setFilter('active')}
-				>
-					Active
-				</FilterButton>
-				<FilterButton
-					isActive={filter === 'completed'}
-					onClick={() => setFilter('completed')}
-				>
-					Complete
-				</FilterButton>
-			</div>
+			{tasks.length > 0 && (
+				<div className={styles.filters}>
+					<FilterButton
+						isActive={filter === 'all'}
+						onClick={() => setFilter('all')}
+					>
+						All
+					</FilterButton>
+					<FilterButton
+						isActive={filter === 'active'}
+						onClick={() => setFilter('active')}
+					>
+						Active
+					</FilterButton>
+					<FilterButton
+						isActive={filter === 'completed'}
+						onClick={() => setFilter('completed')}
+					>
+						Complete
+					</FilterButton>
+				</div>
+			)}
 		</>
 	)
 }

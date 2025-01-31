@@ -40,7 +40,12 @@ export default function TodoList() {
 	return (
 		<div className={styles.todoList}>
 			<h1 className={styles.title}>Todo List</h1>
-			<TodoForm addTask={addTask} filter={filter} setFilter={setFilter} />
+			<TodoForm
+				tasks={tasks}
+				addTask={addTask}
+				filter={filter}
+				setFilter={setFilter}
+			/>
 			{filteredTasks.length ? (
 				filteredTasks.map(task => (
 					<TodoItem
