@@ -5,7 +5,10 @@ import TodoItem from '../TodoItem/TodoItem'
 import styles from './TodoList.module.css'
 
 export default function TodoList() {
-	const [filter, setFilter] = useState('all')
+	const [filter, setFilter] = useState(() => {
+		const savedFilter = localStorage.getItem('filter')
+		return savedFilter ? JSON.parse(savedFilter) : 'all'
+	})
 	const [tasks, setTasks] = useState(() => {
 		const savedTasks = localStorage.getItem('tasks')
 		return savedTasks ? JSON.parse(savedTasks) : []
@@ -16,6 +19,10 @@ export default function TodoList() {
 		if (filter === 'completed') return task.completed
 		return true
 	})
+
+	useEffect(() => {
+		localStorage.setItem('filter', JSON.stringify(filter))
+	}, [filter])
 
 	useEffect(() => {
 		localStorage.setItem('tasks', JSON.stringify(tasks))
